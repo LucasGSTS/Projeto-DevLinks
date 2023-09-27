@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.01);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --higth-ligth-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(assets/moon-stars.svg) no-repeat center;
+}
+
+.ligth {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --higth-ligth-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(assets/sun.svg) no-repeat center;
+}
+
 body {
   /*
     background-image: url(./assets/bg-mobile.jpg);
@@ -16,11 +36,11 @@ body {
     De maneira abreviada podemos definir todas as configurações do background utilizando apenas uma linha
     os elementos em ordem são - background: Color image repeat position/size 
   */
-  background: url(./assets/bg-mobile.jpg) no-repeat top center/cover;
+  background: var(--bg-url) no-repeat top center/cover;
 }
 body * {
   font-family: "Inter", sans-serif;
-  color: #ffffff;
+  color: var(--text-color);
 }
 #container {
   /* normalmente não precisa definir a altura */
@@ -28,6 +48,8 @@ body * {
   margin: 56px auto 0px;
   padding: 0 24px;
 }
+
+/*profile*/
 
 #profile {
   text-align: center;
@@ -38,14 +60,48 @@ body * {
   /* display: block; (O elemento img é em linha pos isso o Margin auto não o centraliza
   podemos tranformar em display bloco ou usar text-align: center para centralizar como feito acima */
   width: 112px;
-  height: 112px;
-  margin: auto;
 }
 
 #profile p {
   font-weight: 500;
   line-height: 24px;
   margin-top: 8px;
+}
+
+#switch {
+  position: relative;
+  width: 64px;
+  margin: 4px auto;
+}
+
+#switch button {
+  height: 32px;
+  width: 32px;
+  background: white var(--switch-bg-url);
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.ligth #switch button {
+  right: 0;
+  left: initial;
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 2px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
 }
 
 /* Links */
@@ -67,9 +123,9 @@ ul li a {
   padding: 16px 24px;
 
   border-radius: 8px;
-  border: 1px solid var(--stroke-color-dark-mode, rgba(255, 255, 255, 0.5));
+  border: 1px solid var(--stroke-color);
 
-  background: var(--surface-color-dark-mode, rgba(255, 255, 255, 0.1));
+  background: var(--surface-color);
   backdrop-filter: blur(4px);
 
   -webkit-backdrop-filter: blur(4px);
@@ -81,8 +137,8 @@ ul li a {
 }
 /* pseudo-selector */
 ul li a:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1.5px solid white;
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
 }
 
 /* Social Links*/
@@ -107,7 +163,7 @@ ul li a:hover {
 }
 
 #social-links a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--higth-ligth-color);
 }
 
 footer {
